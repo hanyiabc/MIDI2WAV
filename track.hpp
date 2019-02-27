@@ -58,7 +58,6 @@ public:
 	*/
 	void addNoteEvent(uint8_t code, uint8_t data1, uint8_t data2, intmax_t tick_time);
 
-
 private:
 	intmax_t TPB;
 	std::list<MIDIEvent> eventList;

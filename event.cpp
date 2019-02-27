@@ -15,6 +15,7 @@ NoteEvent::NoteEvent(bool on, int8_t notenum, int8_t notevelocity) : on_off(on),
 
 bool NoteEvent::getNoteOn()
 {
+
 	return on_off;
 }
 

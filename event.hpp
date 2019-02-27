@@ -6,10 +6,6 @@
 /** A TempoEvent. This event indicates that a change in the tempo should occur
 * on the next MIDI tick.
 */
-
-
-enum TypeOfEvent { TEMPO_EVENT, NOTE_EVENT, END_EVENT, PAUSE_EVENT, STOP_EVENT };
-
 class TempoEvent {
 public:
 
@@ -119,7 +115,7 @@ public:
 	NoteEvent asNoteEvent() const;
 
 private:
-	enum TypeOfEvent eventType;
+	enum TypeOfEvent { TEMPO_EVENT, NOTE_EVENT, END_EVENT } eventType;
 	EventType currentEvent;
 	intmax_t tickTime;
 

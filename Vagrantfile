@@ -2,21 +2,18 @@ $bootstrap = <<BOOTSTRAP
 export DEBIAN_FRONTEND=noninteractive
 apt-get update
 apt-get -y install build-essential
-apt-get -y install cmake 
+apt-get -y install cmake valgrind lcov clang-tidy
+apt-get -y install python3-pip
+pip3 install pexpect
+pip3 install gcovr
 apt-get -y install xorg
 apt-get -y install nodm
 apt-get -y install virtualbox-guest-dkms 
 apt-get -y install virtualbox-guest-utils 
 apt-get -y install virtualbox-guest-x11
 
-# for audio drivers
-apt-get -y install linux-image-extra-`uname -r`
-
-# setup audio
-apt-get -y install linux-sound-base alsa-base alsa-utils libasound2 pulseaudio
-
 # install Qt
-apt-get -y install qt5-default qtmultimedia5-dev libqt5multimedia5-plugins
+apt-get -y install qt5-default qtmultimedia5-dev
 
 # edit nodm config
 sed -ie 's|NODM_ENABLED=false|NODM_ENABLED=true|g' /etc/default/nodm
@@ -41,12 +38,10 @@ echo "sudo VBoxClient --seamless" >> /home/ubuntu/.bashrc
 BOOTSTRAP
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "ubuntu/xenial64"
+  config.vm.box = "ubuntu/xenial32"
 
   config.vm.provider "virtualbox" do |v|
     v.gui = true
-    v.memory = "2048"
-    v.cpus = 2
   end
 
   # setup the VM
